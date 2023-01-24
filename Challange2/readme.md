@@ -1,0 +1,1 @@
+here is powerShell Script to fetch details of Azure Vms and export the ourtput in json 
