@@ -9,7 +9,13 @@ variable "Rg_name"{
 variable "Subnet_Id"{
 	type = string
 }
+variable "remote_port"{
+	type = string
+}
 
+variable "backend_protocol"{
+	type = string
+}
 variable "role"{
 	type = string
 	description = "nature of VMs"
