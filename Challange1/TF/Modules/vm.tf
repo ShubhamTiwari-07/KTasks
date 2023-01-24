@@ -1,20 +1,20 @@
 
  resource "azurerm_network_interface" "nic" {
   name                = "${role}-nic"
-  location            = azurerm_resource_group.krg.location
-  resource_group_name = azurerm_resource_group.krg.name
+  location            = var.location
+  resource_group_name = var.Rg_name
 
   ip_configuration {
     name                          = "internal"
-    subnet_id                     = azurerm_subnet.${var.role}.id
+    subnet_id                     = var.Subnet_Id
     private_ip_address_allocation = "Dynamic"
   }
 }
 
  resource "azurerm_availability_set" "avset" {
    name                         = "as-${var.role}"
-   location                     = azurerm_resource_group.krg.location
-   resource_group_name          = azurerm_resource_group.krg.name
+   location                     = var.location
+   resource_group_name          = var.Rg_name
    platform_fault_domain_count  = 2
    platform_update_domain_count = 2
    managed                      = true
@@ -23,17 +23,11 @@
  resource "azurerm_virtual_machine" "test" {
    count                 = var.VM_Count
    name                  = "vm-${var.role}-${count.index}"
-   location              = azurerm_resource_group.krg.location
+   location              = var.location
    availability_set_id   = azurerm_availability_set.avset.id
-   resource_group_name   = azurerm_resource_group.krg.name
+   resource_group_name   = var.Rg_name
    network_interface_id = [azurerm_network_interface.nic.id]
    vm_size               = var.VM_size
-
-   # Uncomment this line to delete the OS disk automatically when deleting the VM
-   # delete_os_disk_on_termination = true
-
-   # Uncomment this line to delete the data disks automatically when deleting the VM
-   # delete_data_disks_on_termination = true
 
    storage_image_reference {
      publisher = var.publisher

@@ -1,16 +1,13 @@
 resource "azurerm_lb" "azlb" {
-  location            = azurerm.
-  name                = local.lb_name
-  resource_group_name = data.azurerm_resource_group.azlb.name
-  edge_zone           = var.edge_zone
+  location            = var.location
+  name                = ${var.role}-lb
+  resource_group_name = var.Rg_name
   sku                 = var.lb_sku
-  tags                = var.tags
+
 
   frontend_ip_configuration {
     name                          = var.frontend_name
     private_ip_address            = var.frontend_private_ip_address
-    private_ip_address_allocation = var.frontend_private_ip_address_allocation
-    public_ip_address_id          = try(azurerm_public_ip.azlb[0].id, "")
     subnet_id                     = var.frontend_subnet_id
   }
 }

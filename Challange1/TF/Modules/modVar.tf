@@ -1,4 +1,15 @@
 
+
+variable "location"{
+	type = string
+}
+variable "Rg_name"{
+	type = string
+}
+variable "Subnet_Id"{
+	type = string
+}
+
 variable "role"{
 	type = string
 	description = "nature of VMs"

@@ -3,7 +3,9 @@
     "",
     "\\Challange1",
     "\\Challange1\\TF",
-    "\\Challange1\\TF\\Modules"
+    "\\Challange1\\TF\\Modules",
+    "\\Challange2",
+    "\\Challange3"
   ],
   "SelectedNode": "\\Challange1\\TF\\Modules\\loadbalancers.tf",
   "PreviewInSolutionExplorer": false
